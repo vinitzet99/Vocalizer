@@ -1,0 +1,91 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ *
+ * @author User
+ */
+//Imports
+import edu.cmu.sphinx.api.Configuration;
+import edu.cmu.sphinx.api.LiveSpeechRecognizer;
+import edu.cmu.sphinx.api.SpeechResult;
+import java.io.IOException;
+ 
+/**
+ *
+ * @author ex094
+ */
+public class VoiceLauncher {
+    public static void main(String[] args) throws IOException {
+try{        // Configuration Object
+        Configuration configuration = new Configuration();
+ 
+        // Set path to the acoustic model.
+        configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
+        // Set path to the dictionary.
+        configuration.setDictionaryPath("C://Users/User/Desktop/New folder (2)/1101.dic");
+        // Set path to the language model.
+        configuration.setLanguageModelPath("C://Users/User/Desktop/New folder (2)/1101.lm");
+		//Recognizer Object, Pass the Configuration object
+        LiveSpeechRecognizer recognize = new LiveSpeechRecognizer(configuration);
+ 
+        //Start Recognition Process (The bool parameter clears the previous cache if true)
+        recognize.startRecognition(true);
+		 //Create SpeechResult Object
+        SpeechResult result;
+ 
+        //Checking if recognizer has recognized the speech
+        while ((result = recognize.getResult()) != null) {
+            //Get the recognize speech
+            String command = result.getHypothesis();
+			if(command.equalsIgnoreCase("open file manager")) {
+                System.out.println("File Manager Opened!");
+            } else if (command.equalsIgnoreCase("close file manager")) {
+                System.out.println("File Manager Closed!");
+            } else if (command.equalsIgnoreCase("open chrome")) {
+                System.out.println("Chrome Opened!");
+            } else if (command.equalsIgnoreCase("close chrome")) {
+                System.out.println("Chrome Closed!");
+            }
+			if(command.equalsIgnoreCase("open calculator")) {
+                System.out.println("Calculator Opened!");
+            } else if (command.equalsIgnoreCase("close calculator")) {
+                System.out.println("Calculator Closed!");
+            } else if (command.equalsIgnoreCase("open control panel ")) {
+                System.out.println("Control Panel Opened");
+            } else if (command.equalsIgnoreCase("close control panel")) {
+                System.out.println("Control Panel Closed!");
+            }
+			if(command.equalsIgnoreCase("open word")) {
+                System.out.println("Word Opened!");
+            } else if (command.equalsIgnoreCase("close word")) {
+                System.out.println("Word Closed!");
+            } else if (command.equalsIgnoreCase("open excel")) {
+                System.out.println("Excel Opened!");
+            } else if (command.equalsIgnoreCase("close excel")) {
+                System.out.println("Excel Closed!");
+            }
+			if(command.equalsIgnoreCase("open music")) {
+                System.out.println("Music Opened!");
+            } else if (command.equalsIgnoreCase("close music")) {
+                System.out.println("Music Closed!");
+            } else if (command.equalsIgnoreCase("open power point")) {
+                System.out.println("Powerpoint Opened!");
+            } else if (command.equalsIgnoreCase("close power point")) {
+                System.out.println("Powerpoint Closed!");
+            }
+        }
+}
+
+catch(IOException e)
+{
+    throw new RuntimeException(e);
+
+}
+
+
+      }
+ 
+}

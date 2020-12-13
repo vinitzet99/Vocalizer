@@ -1,0 +1,1 @@
+taskkill /IM  "calculator.exe" /F
